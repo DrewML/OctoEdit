@@ -9,7 +9,8 @@
     "copy": "rsync -r --exclude=content-script extension/ dist/",
     "clean": "rm -rf dist && mkdir dist",
     "build:start": "notify -t 'OctoEdit' -m 'Build Started'",
-    "build:complete": "notify -t 'OctoEdit' -m 'Build Complete'"
+    "build:complete": "notify -t 'OctoEdit' -m 'Build Complete'",
+    "package": "npm run build && zip -j chrome.zip dist/*"
   },
   "author": "Andrew Levine",
   "devDependencies": {
