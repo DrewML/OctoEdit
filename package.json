@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm-run-all clean --parallel build:js copy",
     "watch": "watch 'npm-run-all build:start build build:complete' extension",
-    "build:js": "browserify -d -t babelify extension/content-script/ -o dist/content-script.js",
+    "build:js": "browserify -d -t browserify-css -t babelify extension/content-script/ -o dist/content-script.js",
     "copy": "rsync -r --exclude=content-script extension/ dist/",
     "clean": "rm -rf dist && mkdir dist",
     "build:start": "notify -t 'OctoEdit' -m 'Build Started'",
@@ -17,6 +17,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babelify": "^7.2.0",
     "browserify": "^11.2.0",
+    "browserify-css": "^0.9.1",
     "node-notifier": "^4.5.0",
     "npm-run-all": "^1.5.3",
     "watch": "^0.18.0"

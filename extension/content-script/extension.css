@@ -1,0 +1,6 @@
+@import "node_modules/codemirror/lib/codemirror.css";
+
+.octo-edit-area {
+    margin: 0 10px 10px;
+    border: 1px solid #ddd;
+}
