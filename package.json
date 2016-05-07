@@ -1,0 +1,24 @@
+{
+  "name": "octo-edit",
+  "version": "0.1.0",
+  "description": "Syntax Highlighting mini-editor for GitHub.com",
+  "scripts": {
+    "build": "npm-run-all clean --parallel build:js copy",
+    "watch": "watch 'npm-run-all build:start build build:complete' extension",
+    "build:js": "browserify -d -t babelify extension/content-script/ -o dist/content-script.js",
+    "copy": "rsync -r --exclude=content-script extension/ dist/",
+    "clean": "rm -rf dist && mkdir dist",
+    "build:start": "notify -t 'OctoEdit' -m 'Build Started'",
+    "build:complete": "notify -t 'OctoEdit' -m 'Build Complete'"
+  },
+  "author": "Andrew Levine",
+  "devDependencies": {
+    "babel-core": "^6.3.15",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
+    "babelify": "^7.2.0",
+    "browserify": "^11.2.0",
+    "node-notifier": "^4.5.0",
+    "npm-run-all": "^1.5.3",
+    "watch": "^0.18.0"
+  }
+}
