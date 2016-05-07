@@ -6,7 +6,7 @@ import {
 } from './dom';
 
 // Warning: Dumb code lies ahead. This class pretends it supports
-// adding different types of tabs, but makes way too many assumptions.
+// adding different/multiple tabs, but makes way too many assumptions.
 // Good enough for the current use-case.
 
 const EDIT_AREA_CLASS = 'octo-edit-area';
@@ -86,7 +86,7 @@ class TabHandler {
         const codeWrapper = this._createWrapper();
         previewWrapper.parentElement.insertBefore(codeWrapper, previewWrapper);
 
-        handlers.get(btn).onEnter(codeWrapper);
+        handlers.get(btn).onEnter(codeWrapper, form);
     }
 
     _onTabLeave(btn) {

@@ -6,10 +6,17 @@ import onPageNav from './on-page-nav';
 
 const tabs = tabHandler();
 
-function onTabEnter(wrapper) {
+function onTabEnter(wrapper, form) {
+    const plainTextArea = form.querySelector('.js-comment-field');
     const editor = codeMirror(wrapper, {
         mode: 'gfm',
-        lineNumbers: true
+        lineNumbers: true,
+        autofocus: true,
+        value: plainTextArea.value
+    });
+
+    editor.on('change', () => {
+        plainTextArea.value = editor.getValue();
     });
 }
 
