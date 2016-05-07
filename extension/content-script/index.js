@@ -1,10 +1,11 @@
 import tabHandler from './tab-handler';
 import onPageNav from './on-page-nav';
+import codeMirror from 'codemirror';
 
 const tabs = tabHandler();
 
-function onTabEnter(form) {
-    console.log('enter');
+function onTabEnter(wrapper) {
+    const editor = codeMirror(wrapper);
 }
 
 function onTabLeave(form) {

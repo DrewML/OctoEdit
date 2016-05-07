@@ -20,5 +20,8 @@
     "node-notifier": "^4.5.0",
     "npm-run-all": "^1.5.3",
     "watch": "^0.18.0"
+  },
+  "dependencies": {
+    "codemirror": "^5.14.2"
   }
 }

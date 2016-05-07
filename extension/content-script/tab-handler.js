@@ -25,6 +25,12 @@ class TabHandler {
         return btn;
     }
 
+    _createWrapper() {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('octo-edit-area');
+        return wrapper;
+    }
+
     _registerButtons(btns = [], onEnter, onLeave) {
         const { handlers } = this;
 
@@ -50,8 +56,14 @@ class TabHandler {
 
         removeClasses(form.querySelector('.tabnav-tab.selected'), ['selected']);
         removeClasses(form, ['write-selected', 'preview-selected']);
+
         btn.classList.add('selected');
-        handlers.get(btn).onEnter(form);
+
+        const previewWrapper = form.querySelector('.preview-content');
+        const codeWrapper = this._createWrapper();
+        previewWrapper.parentElement.insertBefore(codeWrapper, previewWrapper);
+
+        handlers.get(btn).onEnter(codeWrapper);
     }
 }
 
