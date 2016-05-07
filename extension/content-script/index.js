@@ -13,15 +13,10 @@ function onTabEnter(wrapper) {
     });
 }
 
-function onTabLeave(form) {
-    console.log('leave');
-}
-
 function addTab() {
     tabs.addTab({
         title: 'Code',
-        onEnter: onTabEnter,
-        onLeave: onTabLeave
+        onEnter: onTabEnter
     });
 }
 

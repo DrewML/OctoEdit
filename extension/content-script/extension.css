@@ -4,3 +4,7 @@
     margin: 0 10px 10px;
     border: 1px solid #ddd;
 }
+
+.code-selected .toolbar-commenting {
+    display: none;
+}
