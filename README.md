@@ -6,9 +6,9 @@ _Huge_ thanks to [CodeMirror](https://codemirror.net/) and [Marijn Haverbeke](ht
 
 ![demo](example.gif)
 
-## Installing
+## Install
 
-**TODO**: Publish to Chrome Store
+- [Chrome Store](https://chrome.google.com/webstore/detail/octoedit/ecnglinljpjkbgmdpeiglonddahpbkeb)
 
 ## Developing
 
