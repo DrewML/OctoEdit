@@ -10,6 +10,10 @@ _Huge_ thanks to [CodeMirror](https://codemirror.net/) and [Marijn Haverbeke](ht
 
 - [Chrome Store](https://chrome.google.com/webstore/detail/octoedit/ecnglinljpjkbgmdpeiglonddahpbkeb)
 
+## TODO
+
+- Support GitHub's hotkey for cycling between comment tabs
+
 ## Developing
 
 1. Clone the repository
