@@ -12,6 +12,7 @@ function onTabEnter(wrapper, form) {
         mode: 'gfm',
         lineNumbers: true,
         autofocus: true,
+        lineWrapping: true,
         value: plainTextArea.value
     });
 
