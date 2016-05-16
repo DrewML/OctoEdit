@@ -1,4 +1,5 @@
 import './extension.css';
+import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/gfm/gfm';
 import codeMirror from 'codemirror';
 import tabHandler from './tab-handler';
