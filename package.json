@@ -1,6 +1,5 @@
 {
   "name": "octo-edit",
-  "version": "0.1.0",
   "description": "Syntax Highlighting mini-editor for GitHub.com",
   "scripts": {
     "build": "npm-run-all clean --parallel build:js copy",

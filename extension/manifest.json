@@ -1,6 +1,6 @@
 {
     "name": "OctoEdit",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Syntax Highlighting mini-editor for GitHub.com",
     "manifest_version": 2,
     "content_scripts": [{
