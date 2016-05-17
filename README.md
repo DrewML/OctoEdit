@@ -10,12 +10,18 @@ _Huge_ thanks to [CodeMirror](https://codemirror.net/) and [Marijn Haverbeke](ht
 
 - [Chrome Store](https://chrome.google.com/webstore/detail/octoedit/ecnglinljpjkbgmdpeiglonddahpbkeb)
 
-## TODO
+## Features
 
-- Support GitHub's hotkey for cycling between comment tabs
+- Markdown syntax highlighting
+- Syntax Highlighting for most popular languages within GFM fences
+- Support for GitHub hotkey(`shift + meta + p`) to cycle through comment tabs
 
 ## Developing
 
 1. Clone the repository
 2. Run `npm run watch` to enable rebuilds on change
 3. Load the `dist` folder as an [unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked) in Chrome
+
+## Thank you to these contributors
+
+- [James Talmage](https://github.com/jamestalmage)
