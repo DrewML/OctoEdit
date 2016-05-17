@@ -1,10 +1,10 @@
 import './extension.css';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/gfm/gfm';
 import codeMirror from 'codemirror';
 import tabHandler from './tab-handler';
 import onPageNav from './on-page-nav';
 import onHotkey from './hotkey';
+const bulk = require('bulk-require');
+bulk(__dirname, '../../node_modules/codemirror/mode/*/*.{css,js}');
 
 const tabs = tabHandler();
 onHotkey(e => {
