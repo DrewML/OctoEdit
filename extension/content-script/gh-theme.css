@@ -1,0 +1,60 @@
+.CodeMirror {
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+}
+
+.cm-header-1 {
+    font-size: 2.25em;
+}
+
+.cm-header-2 {
+    font-size: 1.75em;
+}
+
+.cm-header-3 {
+    font-size: 1.5em;
+}
+
+.cm-header-4 {
+    font-size: 1.25em;
+}
+
+.cm-header-5 {
+    font-size: 1em;
+}
+
+.cm-header-6 {
+    font-size: 1em;
+    color: #777;
+}
+
+.cm-keyword,
+.cm-operator {
+    color: #a71d5d;
+}
+
+.cm-s-default .cm-def {
+    color: #0086b3;
+}
+
+.cm-s-default .cm-string {
+    color: #183691;
+}
+
+.cm-s-default .cm-url {
+    color: #4078c0
+}
+
+.cm-variable,
+.cm-s-default .cm-variable-2 {
+    color: #795da3;
+}
+
+.cm-property {
+    color: #0086b3;
+}
+
+.cm-s-default .cm-quote {
+    color: #777;
+    border-left: 4px solid #ddd;
+}

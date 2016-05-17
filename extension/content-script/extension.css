@@ -1,4 +1,5 @@
 @import "node_modules/codemirror/lib/codemirror.css";
+@import "./gh-theme.css";
 
 .octo-edit-area {
     margin: 0 10px 10px;
