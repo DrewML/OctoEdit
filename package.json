@@ -4,7 +4,7 @@
   "scripts": {
     "build": "npm-run-all clean --parallel build:js copy",
     "watch": "watch 'npm-run-all build:start build build:complete' extension",
-    "build:js": "browserify -d -t browserify-css -t babelify extension/content-script/ -o dist/content-script.js",
+    "build:js": "browserify -d extension/content-script/ -o dist/content-script.js",
     "copy": "rsync -r --exclude=content-script extension/ dist/",
     "clean": "rm -rf dist && mkdir dist",
     "build:start": "notify -t 'OctoEdit' -m 'Build Started'",
@@ -18,11 +18,20 @@
     "babelify": "^7.2.0",
     "browserify": "^11.2.0",
     "browserify-css": "^0.9.1",
+    "bulkify": "^1.2.0",
     "node-notifier": "^4.5.0",
     "npm-run-all": "^1.5.3",
     "watch": "^0.18.0"
   },
   "dependencies": {
+    "bulk-require": "^0.2.1",
     "codemirror": "^5.14.2"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-css",
+      "babelify",
+      "bulkify"
+    ]
   }
 }
