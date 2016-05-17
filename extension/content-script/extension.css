@@ -1,4 +1,8 @@
 @import "node_modules/codemirror/lib/codemirror.css";
+@import "node_modules/codemirror/addon/dialog/dialog.css";
+@import "node_modules/codemirror/addon/search/matchesonscrollbar.css";
+@import "node_modules/codemirror/addon/fold/foldgutter.css";
+@import "node_modules/codemirror/addon/scroll/simplescrollbars.css";
 @import "./gh-theme.css";
 
 .octo-edit-area {
