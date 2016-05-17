@@ -4,6 +4,7 @@ import 'codemirror/mode/gfm/gfm';
 import codeMirror from 'codemirror';
 import tabHandler from './tab-handler';
 import onPageNav from './on-page-nav';
+import { removeElement } from './dom';
 
 const tabs = tabHandler();
 
@@ -22,10 +23,15 @@ function onTabEnter(wrapper, form) {
     });
 }
 
+function onTabLeave(form) {
+    // Will be needed eventually
+}
+
 function addTab() {
     tabs.addTab({
         title: 'Code',
-        onEnter: onTabEnter
+        onEnter: onTabEnter,
+        onLeave: onTabLeave
     });
 }
 

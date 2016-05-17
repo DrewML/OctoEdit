@@ -16,10 +16,10 @@ const GH_COMMENT_FORM_CLASS = 'js-previewable-comment-form';
 class TabHandler {
     constructor() {
         this.handlers = new WeakMap();
-        this._initListener();
+        this._initListeners();
     }
 
-    addTab({ title, onEnter }) {
+    addTab({ title, onEnter, onLeave }) {
         const tabStrips = Array.from($$(`.${GH_COMMENT_FORM_CLASS} .tabnav-tabs`));
         const btns = tabStrips.map(tabStrip => {
             const btn = this._createButton(title);
@@ -27,7 +27,7 @@ class TabHandler {
             return btn;
         });
 
-        this._registerButtons(btns, onEnter);
+        this._registerButtons(btns, onEnter, onLeave);
     }
 
     _createButton(title) {
@@ -44,21 +44,26 @@ class TabHandler {
         return wrapper;
     }
 
-    _registerButtons(btns = [], onEnter) {
+    _registerButtons(btns = [], onEnter, onLeave) {
         const { handlers } = this;
 
         for (const btn of btns) {
-            handlers.set(btn, { onEnter });
+            const form = this._getCommentFormFromChild(btn);
+            handlers.set(form, { onEnter, onLeave });
         }
     }
 
-    _initListener() {
+    _getCommentFormFromChild(el) {
+        return el.closest(`.${GH_COMMENT_FORM_CLASS}`);
+    }
+
+    _initListeners() {
         const { handlers } = this;
 
         document.body.addEventListener('click', e => {
             const octoEditOpen = e.target.closest(`.${SELECTED_FORM_CLASS}`);
 
-            if (handlers.has(e.target)) {
+            if (hasClass(e.target, 'js-octo-edit-tab')) {
                 e.preventDefault();
                 if (octoEditOpen) return;
 
@@ -67,14 +72,22 @@ class TabHandler {
             }
 
             if (hasClass(e.target, 'tabnav-tab') && octoEditOpen) {
-                this._onTabLeave(e.target);
+                this._onTabLeave(this._getCommentFormFromChild(e.target));
             }
+        });
+
+        document.body.addEventListener('submit', e => {
+            if (!hasClass(e.target, 'js-new-comment-form')) {
+                return;
+            }
+
+            this._onTabLeave(e.target.querySelector(`.${GH_COMMENT_FORM_CLASS}`));
         });
     }
 
     _onBtnClick(btn) {
         const { handlers } = this;
-        const form = btn.closest(`.${GH_COMMENT_FORM_CLASS}`);
+        const form = this._getCommentFormFromChild(btn);
 
         removeClasses(form.querySelector('.tabnav-tab.selected'), 'selected');
         removeClasses(form, 'write-selected', 'preview-selected');
@@ -86,15 +99,16 @@ class TabHandler {
         const codeWrapper = this._createWrapper();
         previewWrapper.parentElement.insertBefore(codeWrapper, previewWrapper);
 
-        handlers.get(btn).onEnter(codeWrapper, form);
+        handlers.get(form).onEnter(codeWrapper, form);
     }
 
-    _onTabLeave(btn) {
+    _onTabLeave(form) {
         const { handlers } = this;
-        const form = btn.closest(`.${GH_COMMENT_FORM_CLASS}`);
 
         removeClasses(form, SELECTED_FORM_CLASS);
         removeElement(form.querySelector(`.${EDIT_AREA_CLASS}`));
+
+        handlers.get(form).onLeave(form);
     }
 }
 
