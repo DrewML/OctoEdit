@@ -4,9 +4,25 @@ import 'codemirror/mode/gfm/gfm';
 import codeMirror from 'codemirror';
 import tabHandler from './tab-handler';
 import onPageNav from './on-page-nav';
-import { removeElement } from './dom';
+import onHotkey from './hotkey';
 
 const tabs = tabHandler();
+onHotkey(e => {
+    // Note: When more than one comment field is visible, this always uses the
+    // first in the DOM. This is 1:1 with how GitHub's own code handles it
+    const previewTab = document.querySelector('.js-preview-tab.selected');
+    const codeTab = document.querySelector('.js-octo-edit-tab.selected');
+    if (!(previewTab || codeTab)) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (previewTab) {
+        previewTab.closest('form').querySelector('.js-octo-edit-tab').click();
+    } else {
+        codeTab.closest('form').querySelector('.js-write-tab').click();
+    }
+});
 
 function onTabEnter(wrapper, form) {
     const plainTextArea = form.querySelector('.js-comment-field');
