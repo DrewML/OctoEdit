@@ -1,0 +1,12 @@
+.options-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.options-list li{
+    margin-top: 2%;
+}
+
+.save {
+    text-align: center;
+}

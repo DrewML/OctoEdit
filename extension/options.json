@@ -1,0 +1,17 @@
+{
+    "enableWordWrap": {
+        "defaultVal": true,
+        "type": "bool",
+        "descrip": "Enable Word Wrap"
+    },
+    "showLineNumbers": {
+        "defaultVal": true,
+        "type": "bool",
+        "descrip": "Show Line Numbers"
+    },
+    "tabName": {
+        "defaultVal": "Code",
+        "type": "string",
+        "descrip": "Custom Tab Name"
+    }
+}

@@ -2,54 +2,47 @@ import './extension.css';
 import codeMirror from 'codemirror';
 import tabHandler from './tab-handler';
 import onPageNav from './on-page-nav';
-import onHotkey from './hotkey';
+import initHotkey from './hotkey';
+import defaultSettings from './defaults';
+import { getSettings } from '../util/settings';
+
 const bulk = require('bulk-require');
 bulk(__dirname, '../../node_modules/codemirror/mode/*/*.{css,js}');
 
-const tabs = tabHandler();
-onHotkey(e => {
-    // Note: When more than one comment field is visible, this always uses the
-    // first in the DOM. This is 1:1 with how GitHub's own code handles it
-    const previewTab = document.querySelector('.js-preview-tab.selected');
-    const codeTab = document.querySelector('.js-octo-edit-tab.selected');
-    if (!(previewTab || codeTab)) return;
+getSettings(defaultSettings).then(settings => {
+    const tabs = tabHandler();
+    initHotkey();
 
-    e.preventDefault();
-    e.stopPropagation();
+    function onTabEnter(wrapper, form) {
+        const plainTextArea = form.querySelector('.js-comment-field');
+        const editor = codeMirror(wrapper, {
+            mode: 'gfm',
+            lineNumbers: settings.showLineNumbers,
+            autofocus: true,
+            lineWrapping: settings.enableWordWrap,
+            value: plainTextArea.value
+        });
 
-    if (previewTab) {
-        previewTab.closest('form').querySelector('.js-octo-edit-tab').click();
-    } else {
-        codeTab.closest('form').querySelector('.js-write-tab').click();
+        editor.on('change', () => {
+            plainTextArea.value = editor.getValue();
+        });
     }
+
+    function onTabLeave(form) {
+        // Will be needed eventually
+    }
+
+    function addTab() {
+        tabs.addTab({
+            title: settings.tabName,
+            onEnter: onTabEnter,
+            onLeave: onTabLeave
+        });
+    }
+
+    onPageNav(addTab);
+    addTab();
+}).catch(err => {
+    console.error('An error occurred with OctoEdit. Please report an issue on GitHub');
+    console.error(err);
 });
-
-function onTabEnter(wrapper, form) {
-    const plainTextArea = form.querySelector('.js-comment-field');
-    const editor = codeMirror(wrapper, {
-        mode: 'gfm',
-        lineNumbers: true,
-        autofocus: true,
-        lineWrapping: true,
-        value: plainTextArea.value
-    });
-
-    editor.on('change', () => {
-        plainTextArea.value = editor.getValue();
-    });
-}
-
-function onTabLeave(form) {
-    // Will be needed eventually
-}
-
-function addTab() {
-    tabs.addTab({
-        title: 'Code',
-        onEnter: onTabEnter,
-        onLeave: onTabLeave
-    });
-}
-
-onPageNav(addTab);
-addTab();
