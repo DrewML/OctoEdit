@@ -13,5 +13,10 @@
         "defaultVal": "Code",
         "type": "string",
         "descrip": "Custom Tab Name"
+    },
+    "tabCharSize": {
+        "defaultVal": "4",
+        "type": "string",
+        "descrip": "Tab Size"
     }
 }

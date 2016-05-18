@@ -20,7 +20,8 @@ getSettings(defaultSettings).then(settings => {
             lineNumbers: settings.showLineNumbers,
             autofocus: true,
             lineWrapping: settings.enableWordWrap,
-            value: plainTextArea.value
+            value: plainTextArea.value,
+            tabSize: settings.tabCharSize
         });
 
         editor.on('change', () => {
