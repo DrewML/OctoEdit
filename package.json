@@ -3,12 +3,12 @@
   "description": "Syntax Highlighting mini-editor for GitHub.com",
   "scripts": {
     "build": "npm-run-all clean --parallel build:js copy",
-    "watch": "watch 'npm-run-all build:start build build:complete' extension",
-    "build:js": "browserify -d extension/content-script/ -o dist/content-script.js",
-    "copy": "rsync -r --exclude=content-script extension/ dist/",
-    "clean": "rm -rf dist && mkdir dist",
-    "build:start": "notify -t 'OctoEdit' -m 'Build Started'",
-    "build:complete": "notify -t 'OctoEdit' -m 'Build Complete'",
+    "watch": "npm-run-all --parallel watch:files watch:js",
+    "build:js": "browserify -v -d extension/content-script/ -o dist/content-script.js",
+    "watch:js": "watchify -v -d extension/content-script/ -o dist/content-script.js",
+    "watch:files": "watch 'npm run copy' extension",
+    "copy": "cpy 'extension/*.*' dist",
+    "clean": "rimraf dist && mkdir dist",
     "package": "npm run build && zip -j chrome.zip dist/*"
   },
   "author": "Andrew Levine",
@@ -19,9 +19,12 @@
     "browserify": "^11.2.0",
     "browserify-css": "^0.9.1",
     "bulkify": "^1.2.0",
-    "node-notifier": "^4.5.0",
+    "cpy-cli": "^1.0.0",
+    "mkdir": "0.0.2",
     "npm-run-all": "^1.5.3",
-    "watch": "^0.18.0"
+    "rimraf": "^2.5.2",
+    "watch": "^0.18.0",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
     "bulk-require": "^0.2.1",
