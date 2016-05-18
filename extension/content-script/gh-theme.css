@@ -58,3 +58,17 @@
     color: #777;
     border-left: 4px solid #ddd;
 }
+
+.cm-keyword,
+.cm-operator,
+.cm-def,
+.cm-string,
+.cm-url,
+.cm-variable,
+.cm-variable-2,
+.cm-variable-3,
+.cm-property,
+.cm-quote {
+    font-family: monospace;
+    font-size: 0.9em;
+}
