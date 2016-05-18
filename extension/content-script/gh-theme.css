@@ -68,7 +68,9 @@
 .cm-variable-2,
 .cm-variable-3,
 .cm-property,
-.cm-quote {
+.cm-quote,
+.cm-comment,
+.cm-number {
     font-family: monospace;
     font-size: 0.9em;
 }
