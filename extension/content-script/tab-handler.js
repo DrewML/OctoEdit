@@ -20,6 +20,8 @@ class TabHandler {
     }
 
     addTab({ title, onEnter, onLeave }) {
+        this._removeStaleTabs();
+
         const tabStrips = Array.from($$(`.${GH_COMMENT_FORM_CLASS} .tabnav-tabs`));
         const btns = tabStrips.map(tabStrip => {
             const btn = this._createButton(title);
@@ -28,6 +30,15 @@ class TabHandler {
         });
 
         this._registerButtons(btns, onEnter, onLeave);
+    }
+
+    _removeStaleTabs() {
+        // Necessary on back/forward in history. GitHub restores
+        // the DOM from a string of markup captured before the page navigation.
+        // which uses new elements so, although the tabs appear on the page,
+        // we have no reference to them in this.handlers
+        const tabs = document.querySelectorAll('.js-octo-edit-tab');
+        if (tabs) Array.from(tabs).forEach(tab => removeElement(tab));
     }
 
     _createButton(title) {
