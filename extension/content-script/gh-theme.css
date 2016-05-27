@@ -33,7 +33,8 @@
     color: #a71d5d;
 }
 
-.cm-s-default .cm-def {
+.cm-s-default .cm-def,
+.cm-s-default .cm-builtin {
     color: #0086b3;
 }
 
@@ -70,7 +71,7 @@
 .cm-property,
 .cm-quote,
 .cm-comment,
-.cm-number {
+.cm-number,
+.cm-builtin {
     font-family: monospace;
-    font-size: 0.9em;
 }

@@ -5,6 +5,10 @@ import onPageNav from './on-page-nav';
 import initHotkey from './hotkey';
 import defaultSettings from './defaults';
 import { getSettings } from '../util/settings';
+import 'codemirror/addon/edit/matchbrackets';
+import 'codemirror/addon/edit/matchtags';
+import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/edit/closetag';
 
 const bulk = require('bulk-require');
 bulk(__dirname, '../../node_modules/codemirror/mode/*/*.{css,js}');
@@ -21,7 +25,11 @@ getSettings(defaultSettings).then(settings => {
             autofocus: true,
             lineWrapping: settings.enableWordWrap,
             value: plainTextArea.value,
-            tabSize: settings.tabCharSize
+            tabSize: settings.tabCharSize,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            matchTags: true,
+            autoCloseTags: true
         });
 
         editor.on('change', () => {
