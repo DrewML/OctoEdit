@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "bulk-require": "^0.2.1",
-    "codemirror": "^5.14.2"
+    "codemirror": "^5.48.0"
   },
   "browserify": {
     "transform": [
